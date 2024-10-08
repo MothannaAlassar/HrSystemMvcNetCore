@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HrSystem.Controllers
 {
-    public class EmployeeController : Controller
+    public class EmployeeController : BaseBasicController
     {
         private readonly Repositories.IEmployeeRepo employeeRepo;
         public EmployeeController(IEmployeeRepo employeeRepo)
@@ -22,7 +22,8 @@ namespace HrSystem.Controllers
             var model = new Models.EmployeeViewModel();
             var rtv = employeeRepo.List();
             model.Employees = rtv?.ToList();
-            return View(model);
+            var lang = GetDefaultLang();
+            return View($"{lang}/Index", model);
         }
     }
 }
