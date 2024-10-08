@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - نظام الموارد البشرية</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site_ar.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">الموارد البشرية</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">الرئيسية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">الخصوصية</a>
+                        </li>
+                        <li class="nav-item">
+                            <select class="form-control" id="myLang" onchange="SelectLang()">
+                                <option value="ar">AR</option>
+                                <option value="en">EN</option>
+                            </select>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - HrSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function SelectLang() {
+            var selectedValue = $('#myLang').val();
+            if (selectedValue == "en") {
+                ChangeLang();
+            }
+
+        }
+    </script>
+    <script>
+        // jQuery
+        function ChangeLang() {
+            // Get the current URL
+            var currentUrl = window.location.pathname;
+            // Send the URL as a parameter to the server
+            $.ajax({
+                url: '@Url.Action("changeLanguage", "Home", new { @lang = "en" })',
+                type: "GET",
+                data: { url: currentUrl },
+                success: function (data) {
+                    // Handle the response data
+                    var returnUrl = data.url_ar;
+                    if (returnUrl) {
+                        // Redirect the user to the returned URL
+                        window.location.href = returnUrl;
+                    } else {
+                        window.location.href = '/';
+                        console.log('No return URL received from the server.');
+                    }
+                    console.log(data);
+                },
+                error: function (xhr, status, error) {
+                    // Handle any errors
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
