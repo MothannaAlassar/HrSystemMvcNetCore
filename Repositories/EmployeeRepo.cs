@@ -50,8 +50,8 @@ namespace HrSystem.Repositories
         public List<Employee> Search(string term)
         {
             var result = dbContext.Employees.Include(a => a.Department)
-                .Where(b => b.Name_En.Contains(term)
-                || b.Name_Ar.Contains(term)
+                .Where(b => b.First_Name_En.Contains(term)
+                || b.First_Name_Ar.Contains(term)
                         ).ToList();
 
             return result;

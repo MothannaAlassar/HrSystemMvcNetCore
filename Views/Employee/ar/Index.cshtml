@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_Layout_ar.cshtml";
     ViewData["Title"] = "Index"; }
 
-<h2>Index</h2>
+<h2>الموظفين</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">اضافة جديد</a>
 </p>
 <table class="table table-bordered table-striped table-hover">
     <thead>
@@ -29,12 +29,12 @@
         @Html.DisplayFor(modelItem => item.Id)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.Name_En)
+        @Html.DisplayFor(modelItem => item.First_Name_En)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        @Html.ActionLink("تعديل", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("تفاصيل", "Details", new { id = item.Id }) |
+        @Html.ActionLink("حذف", "Delete", new { id = item.Id })
     </td>
 </tr>
 }

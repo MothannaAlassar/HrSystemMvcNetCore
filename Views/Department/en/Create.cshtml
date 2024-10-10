@@ -1,0 +1,58 @@
+﻿@model HrSystem.Models.DepartmentViewModel
+
+@{ ViewData["Title"] = "Create"; }
+
+<div class="alert-success modal-title text-center">
+    <h2>Departments-Create New</h2>
+</div>
+<hr />
+
+
+
+<div class="modal-open">
+
+    <div class="row modal-content">
+        <div class="col-md-12">
+            <form class="was-validated" asp-action="Create" enctype="multipart/form-data">
+                @if (Model?.Message != null)
+                {
+            <h5 class="alert alert-danger">@Model.Message</h5>}
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label">Department Name (English)</label>
+                    <input asp-for="Name_En" class="form-control" required />
+                    <span asp-validation-for="Name_En" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Department Name (Arabic)</label>
+                    <input asp-for="Name_Ar" class="form-control" required />
+                    <span asp-validation-for="Name_Ar" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-primary form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <span class="btn-primary">
+                                <a asp-action="Index" value="Back" class="btn btn-primary form-control">Back</a>
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+                @*<div class="form-group justify-content-center">
+                    <input type="submit" value="Save" class="btn btn-info" />
+                    <a asp-action="Index" class="btn btn-outline-dark">Back</a>
+                </div>*@
+            </form>
+            <div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

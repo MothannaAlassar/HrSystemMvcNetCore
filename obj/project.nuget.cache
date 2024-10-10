@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "J7rzdWMS5qxMdi4+lBxM1KuHgUtt1eh7nAkqK11iW280QX2giGa7wXOj1yXPCLZlt9fVBeaaC/VUU5mLbbT04A==",
+  "dgSpecHash": "lq8EAL7j7Mhp1cdTPHmnA72TcxypC3AzoL2TC3370Xq9lgRb3Q4B0dupdVbv3JZPZONApMHgdTiv4lbh7nN4Bw==",
   "success": true,
   "projectFilePath": "E:\\SharedApps\\GitHub\\HrSystemMvcNetCore\\HrSystem.csproj",
   "expectedPackageFiles": [
@@ -63,6 +63,9 @@
     "C:\\Users\\SamPc\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\SamPc\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\SamPc\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\SamPc\\.nuget\\packages\\nlog\\5.3.4\\nlog.5.3.4.nupkg.sha512",
+    "C:\\Users\\SamPc\\.nuget\\packages\\nlog.extensions.logging\\5.3.13\\nlog.extensions.logging.5.3.13.nupkg.sha512",
+    "C:\\Users\\SamPc\\.nuget\\packages\\nlog.web.aspnetcore\\5.3.14\\nlog.web.aspnetcore.5.3.14.nupkg.sha512",
     "C:\\Users\\SamPc\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\SamPc\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\SamPc\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",

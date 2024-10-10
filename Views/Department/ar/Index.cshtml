@@ -1,23 +1,27 @@
 ﻿@model HrSystem.Models.DepartmentViewModel
 
-@{ 
+@{ Layout = "~/Views/Shared/_Layout_ar.cshtml";
+                ViewData["Title"] = "Index"; }
 
-    Layout = "~/Views/Shared/_Layout_ar.cshtml";
-    ViewData["Title"] = "Index"; }
 
-<h2>Index</h2>
-
+<div class="alert-success modal-title text-center">
+    <h2>الاقسام</h2>
+</div>
+<hr />
 <p>
-    <a asp-action="Create">جديد</a>
+    <a class="btn btn-primary" asp-action="Create">اضافة جديد</a>
 </p>
 <table class="table table-bordered table-striped table-hover">
     <thead>
         <tr>
             <th>
-                id
+                المعرف
             </th>
             <th>
-                name
+                الاسم انجليزي
+            </th>
+            <th>
+                الاسم عربي
             </th>
             <th></th>
         </tr>
@@ -33,10 +37,14 @@
         @Html.DisplayFor(modelItem => item.Name_En)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        @Html.DisplayFor(modelItem => item.Name_Ar)
     </td>
-</tr>}
+    <td>
+        @Html.ActionLink("تعديل", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("تفاصيل", "Details", new { id = item.Id }) |
+        @Html.ActionLink("حذف", "Delete", new { id = item.Id })
+    </td>
+</tr>
+}
     </tbody>
 </table>

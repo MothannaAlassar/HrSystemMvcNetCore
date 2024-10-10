@@ -34,9 +34,14 @@ namespace HrSystem
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+      //      services.AddIdentity<ApplicationUser, IdentityRole>()
+      //.AddEntityFrameworkStores<ApplicationDbContext>()
+      //.AddDefaultTokenProviders();
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +62,8 @@ namespace HrSystem
             app.UseStaticFiles();
 
             app.UseRouting();
+            // Register the global exception handler middleware
+            app.UseMiddleware<Middlewares.GlobalExceptionHandlerMiddleware>();
 
             app.UseAuthentication();
             app.UseAuthorization();

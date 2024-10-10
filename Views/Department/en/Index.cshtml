@@ -2,10 +2,12 @@
 
 @{ ViewData["Title"] = "Index"; }
 
-<h2>Index</h2>
-
+<div class="alert-success modal-title text-center">
+    <h2>Departments</h2>
+</div>
+<hr />
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
 </p>
 <table class="table table-bordered table-striped table-hover">
     <thead>
@@ -14,7 +16,10 @@
                 id
             </th>
             <th>
-                name
+                English Name
+            </th>
+            <th>
+                Arabic Name
             </th>
             <th></th>
         </tr>
@@ -30,10 +35,14 @@
         @Html.DisplayFor(modelItem => item.Name_En)
     </td>
     <td>
+        @Html.DisplayFor(modelItem => item.Name_Ar)
+    </td>
+    <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
         @Html.ActionLink("Details", "Details", new { id = item.Id }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
     </td>
-</tr>}
+</tr>
+}
     </tbody>
 </table>

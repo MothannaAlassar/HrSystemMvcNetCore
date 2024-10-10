@@ -11,12 +11,12 @@ namespace HrSystem.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Data.ApplicationUser> _userManager;
+        private readonly SignInManager<Data.ApplicationUser> _signInManager;
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<Data.ApplicationUser> userManager,
+            SignInManager<Data.ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -35,9 +35,14 @@ namespace HrSystem.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+           
+            [Display(Name = "Full Name (English)")]
+            public string Full_UserName_en { get; set; }
+            [Display(Name = "Full Name (Arabic)")]
+            public string Full_UserName_Ar { get; set; }
         }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(Data.ApplicationUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
@@ -46,7 +51,9 @@ namespace HrSystem.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Full_UserName_Ar=user.Full_UserName_Ar,
+                Full_UserName_en=user.Full_UserName_En
             };
         }
 
@@ -86,7 +93,7 @@ namespace HrSystem.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
-
+           await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

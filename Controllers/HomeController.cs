@@ -50,13 +50,13 @@ namespace HrSystem.Controllers
                     rtv.url_ar = "/";
                 if (string.IsNullOrEmpty(rtv.url_en))
                     rtv.url_en = "/";
-
+                
                 // Return JSON response
                 return Json(rtv); // No need for JsonRequestBehavior in .NET Core
             }
             catch (Exception ex)
             {
-
+                AddErrorLog(ex);
             }
             // Fetch data from the database based on the URL segment
             var data = new object { };// db.YourModel.Where(m => m.UrlSegment == urlSegment).FirstOrDefault();

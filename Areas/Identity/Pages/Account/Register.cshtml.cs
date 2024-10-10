@@ -19,14 +19,14 @@ namespace HrSystem.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<Data.ApplicationUser> _signInManager;
+        private readonly UserManager<Data.ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<Data.ApplicationUser> userManager,
+            SignInManager<Data.ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -45,6 +45,12 @@ namespace HrSystem.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Required]
+            [Display(Name = "Full Name(English)")]
+            public string FullName_En { get; set; }
+            [Required]
+            [Display(Name = "Full Name(Arabic)")]
+            public string FullName_Ar { get; set; }
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -74,7 +80,7 @@ namespace HrSystem.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new Data.ApplicationUser {Full_UserName_Ar=Input.FullName_Ar,Full_UserName_En=Input.FullName_En ,UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

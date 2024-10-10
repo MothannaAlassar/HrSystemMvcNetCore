@@ -27,7 +27,11 @@ namespace HrSystem.Repositories
             dbContext.Departments.Remove(department);
             dbContext.SaveChanges();
         }
-
+        /// <summary>
+        /// find the department by primary key
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Department Find(int id)
         {
             var book = dbContext.Departments.Include(a => a.Employees).SingleOrDefault(b => b.Id == id);

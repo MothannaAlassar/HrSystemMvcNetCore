@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,12 +13,22 @@ namespace HrSystem.Controllers
 {
     public class BaseBasicController : Controller
     {
-       
+        private static readonly Logger Baselogger = LogManager.GetCurrentClassLogger();
 
         public BaseBasicController()
         {
         }
-
+        protected void AddErrorLog(Exception ex)
+        {
+            Baselogger.Error($"{Environment.NewLine}----------------- Date Of Exception: {DateTime.Now}  ------------------{Environment.NewLine}");
+            Baselogger.Error(ex);
+            Baselogger.Error("" + Environment.NewLine);
+        }
+        protected ViewResult RedirectToView(string view, object model)
+        {
+            var lang = GetDefaultLang();
+            return View($"{lang}/{view}", model);
+        }
         protected void AddCookie(string key,string value)
         {
             // Create a cookie

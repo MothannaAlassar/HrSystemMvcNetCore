@@ -1,0 +1,60 @@
+﻿@model HrSystem.Models.DepartmentViewModel
+
+@{ 
+
+    ViewData["Title"] = "Details"; }
+
+<div class="alert-success modal-title text-center">
+    <h2>Departments-Details</h2>
+</div>
+<hr />
+<div class="modal-open">
+
+    <div class="row modal-content">
+        <div class="col-md-12">
+
+            @if (Model?.Message != null)
+            {
+<h5 class="alert alert-danger">@Model.Message</h5>}
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Id</label>
+                <input readonly asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Department Name (English)</label>
+                <input readonly asp-for="Name_En" class="form-control" required />
+                <span asp-validation-for="Name_En" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Department Name (Arabic)</label>
+                <input readonly asp-for="Name_Ar" class="form-control" required />
+                <span asp-validation-for="Name_Ar" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn-primary form-control" })
+                        
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="btn-primary">
+                            <a asp-action="Index" value="Back" class="btn btn-primary form-control">Back</a>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

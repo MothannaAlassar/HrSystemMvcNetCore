@@ -11,12 +11,12 @@ namespace HrSystem.Areas.Identity.Pages.Account.Manage
 {
     public class SetPasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Data.ApplicationUser> _userManager;
+        private readonly SignInManager<Data.ApplicationUser> _signInManager;
 
         public SetPasswordModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<Data.ApplicationUser> userManager,
+            SignInManager<Data.ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
