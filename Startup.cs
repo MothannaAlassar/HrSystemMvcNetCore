@@ -29,6 +29,8 @@ namespace HrSystem
         {
             services.AddScoped<Repositories.IDepartmentRepo, Repositories.DepartmentRepo>();
             services.AddScoped<Repositories.IEmployeeRepo, Repositories.EmployeeRepo>();
+            services.AddScoped<Repositories.ICityRepo, Repositories.CityRepo>();
+            services.AddScoped<Repositories.ICountyRepo, Repositories.CountyRepo>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -60,7 +62,13 @@ namespace HrSystem
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            // Serve static files from the CustomImages directory
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
+                    System.IO.Path.Combine(env.ContentRootPath, "MediaFiles")),
+                RequestPath = "/MediaFiles" // URL path to access the images
+            });
             app.UseRouting();
             // Register the global exception handler middleware
             app.UseMiddleware<Middlewares.GlobalExceptionHandlerMiddleware>();

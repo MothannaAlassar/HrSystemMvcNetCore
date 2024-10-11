@@ -4,14 +4,16 @@ using HrSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HrSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241011175438_AddCountriesAndCityTables")]
+    partial class AddCountriesAndCityTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,10 +97,7 @@ namespace HrSystem.Data.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<string>("CityName_Ar")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CityName_En")
+                    b.Property<string>("CityName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CountryId")
@@ -114,36 +113,31 @@ namespace HrSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CityName_Ar = "دبي",
-                            CityName_En = "Dubai",
+                            CityName = "Dubai",
                             CountryId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CityName_Ar = "ابو ظبي",
-                            CityName_En = "AbuDhabi",
+                            CityName = "AbuDhabi",
                             CountryId = 1
                         },
                         new
                         {
                             Id = 3,
-                            CityName_Ar = "الشارقة",
-                            CityName_En = "sharja",
+                            CityName = "sharja",
                             CountryId = 1
                         },
                         new
                         {
                             Id = 4,
-                            CityName_Ar = "عجمان",
-                            CityName_En = "Ajman",
+                            CityName = "Ajman",
                             CountryId = 1
                         },
                         new
                         {
                             Id = 5,
-                            CityName_Ar = "راس الخيمة",
-                            CityName_En = "RAK",
+                            CityName = "RAK",
                             CountryId = 1
                         });
                 });
@@ -153,16 +147,10 @@ namespace HrSystem.Data.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<string>("CountryName_Ar")
+                    b.Property<string>("CountryName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CountryName_En")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nationality_Ar")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nationality_En")
+                    b.Property<string>("Nationality")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -173,18 +161,14 @@ namespace HrSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CountryName_Ar = "الامارات العربية المتحدة",
-                            CountryName_En = "United Arab Emarites",
-                            Nationality_Ar = "اماراتي",
-                            Nationality_En = "Emarati"
+                            CountryName = "United Arab Emarites",
+                            Nationality = "Emarati"
                         },
                         new
                         {
                             Id = 2,
-                            CountryName_Ar = "المملكة العربية السعودية",
-                            CountryName_En = "Sudia",
-                            Nationality_Ar = "سعودي",
-                            Nationality_En = "sudi"
+                            CountryName = "Sudia",
+                            Nationality = "sudi"
                         });
                 });
 
@@ -222,9 +206,6 @@ namespace HrSystem.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AttachmentFile")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("BirthOfDate")
                         .HasColumnType("datetime2");
 
@@ -235,6 +216,9 @@ namespace HrSystem.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedDate")
@@ -304,11 +288,11 @@ namespace HrSystem.Data.Migrations
 
                     b.HasIndex("CityId");
 
+                    b.HasIndex("CountryId");
+
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("NationaltyId");
-
-                    b.HasIndex("StayingCountryId");
 
                     b.ToTable("Employees");
                 });
@@ -463,6 +447,10 @@ namespace HrSystem.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CityId");
 
+                    b.HasOne("HrSystem.Data.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
+
                     b.HasOne("HrSystem.Data.Department", "Department")
                         .WithMany("Employees")
                         .HasForeignKey("DepartmentId");
@@ -470,10 +458,6 @@ namespace HrSystem.Data.Migrations
                     b.HasOne("HrSystem.Data.Country", "Nationality")
                         .WithMany()
                         .HasForeignKey("NationaltyId");
-
-                    b.HasOne("HrSystem.Data.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("StayingCountryId");
 
                     b.Navigation("City");
 

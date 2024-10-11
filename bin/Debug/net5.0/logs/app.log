@@ -1141,3 +1141,197 @@ Error Number:207,State:1,Class:16|HrSystem.Middlewares.GlobalExceptionHandlerMid
 2024-10-11 01:29:56.7515|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
 2024-10-11 01:31:23.6645|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
 2024-10-11 01:33:28.0365|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 01:45:47.9438|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 20:19:14.5457|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 20:21:26.2460|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 20:21:27.9813|ERROR|HrSystem.Middlewares.GlobalExceptionHandlerMiddleware|An unhandled exception occurred|Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'NationaltyId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at HrSystem.Repositories.EmployeeRepo.List() in E:\SharedApps\GitHub\HrSystemMvcNetCore\Repositories\EmployeeRepo.cs:line 41
+   at HrSystem.Controllers.EmployeeController.Index() in E:\SharedApps\GitHub\HrSystemMvcNetCore\Controllers\EmployeeController.cs:line 23
+   at lambda_method11(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at HrSystem.Middlewares.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context) in E:\SharedApps\GitHub\HrSystemMvcNetCore\Middlewares\GlobalExceptionHandlerMiddleware.cs:line 24
+ClientConnectionId:7275524a-9a7f-4713-bb5e-40fee54e1de2
+Error Number:207,State:1,Class:16|HrSystem.Middlewares.GlobalExceptionHandlerMiddleware.HandleExceptionAsync|
+2024-10-11 21:54:29.5638|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 21:56:49.3349|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 21:56:55.5793|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 21:57:09.0873|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 21:58:33.0596|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 21:59:02.8964|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 21:59:20.9297|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:00:08.4003|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:02:37.0569|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:02:48.1084|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:05:29.1013|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:07:21.3659|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:08:06.9683|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:10:52.7511|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:12:31.6390|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:12:49.8703|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:25:14.7099|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:33:33.0657|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:34:01.7576|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:36:56.3024|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:43:19.3504|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:51:33.4425|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:51:47.9206|ERROR|HrSystem.Middlewares.GlobalExceptionHandlerMiddleware|An unhandled exception occurred|Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'CityName_Ar'.
+Invalid column name 'CityName_En'.
+Invalid column name 'CountryName_Ar'.
+Invalid column name 'CountryName_En'.
+Invalid column name 'Nationality_Ar'.
+Invalid column name 'Nationality_En'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at HrSystem.Repositories.CityRepo.List() in E:\SharedApps\GitHub\HrSystemMvcNetCore\Repositories\CityRepo.cs:line 60
+   at HrSystem.Controllers.EmployeeController.Create() in E:\SharedApps\GitHub\HrSystemMvcNetCore\Controllers\EmployeeController.cs:line 125
+   at lambda_method181(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at HrSystem.Middlewares.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context) in E:\SharedApps\GitHub\HrSystemMvcNetCore\Middlewares\GlobalExceptionHandlerMiddleware.cs:line 24
+ClientConnectionId:bfa84bd1-7d04-4220-804f-0c535f39d7db
+Error Number:207,State:1,Class:16|HrSystem.Middlewares.GlobalExceptionHandlerMiddleware.HandleExceptionAsync|
+2024-10-11 22:53:11.0296|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 22:54:05.1161|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:06:16.3177|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:06:48.5600|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:07:04.2464|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:08:31.6032|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:12:05.6752|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:12:45.5235|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:14:03.9483|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:15:20.8224|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:16:23.2019|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:16:28.4357|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:41:01.3348|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:42:08.8344|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:50:10.7761|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-11 23:52:56.1559|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:08:13.9252|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:17:28.4794|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:18:45.8553|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:19:42.2011|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:21:59.0788|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:33:20.9675|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:40:51.1663|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:46:52.7362|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:47:16.1167|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:47:19.1119|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:49:08.1734|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:55:11.8136|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:56:42.9900|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 00:56:56.2002|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:02:46.6806|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:03:35.9926|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:05:26.8309|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:05:48.8017|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:06:17.1203|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:06:26.0847|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:07:10.4711|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:07:53.6994|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:08:29.4355|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:09:15.1148|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:09:38.4060|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:10:05.6922|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:10:24.3431|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:10:34.3671|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:11:31.0315|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:12:50.2298|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:13:08.4709|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:15:17.1601|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:15:26.6845|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:16:43.4557|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:17:24.8661|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:17:39.1861|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:18:34.6315|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:19:08.7149|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:20:49.5431|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:21:35.7034|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:21:45.8720|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:22:11.4558|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:22:35.6258|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:23:43.8994|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:23:51.8109|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:24:20.3342|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:24:29.2042|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:27:18.1960|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:31:58.0942|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:38:58.3400|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:39:10.2671|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:39:51.6070|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:40:28.6702|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:42:27.3141|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:43:24.6700|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:44:19.7660|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:45:03.5932|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:45:22.5734|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|
+2024-10-12 01:53:52.0564|DEBUG|HrSystem.Program|init main||HrSystem.Program.Main|

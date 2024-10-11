@@ -5,7 +5,7 @@
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <button class="btn btn-primary" onclick="NewEmployee();">Create New</button>
 </p>
 <table class="table table-bordered table-striped table-hover">
     <thead>
@@ -34,7 +34,38 @@
         @Html.ActionLink("Details", "Details", new { id = item.Id }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
     </td>
-</tr>
-}
+</tr>}
     </tbody>
 </table>
+@*here the popup model*@
+<div id="form-modal" class="modal fade" tabindex="-1" aria-hidden="true" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="EmployeeContent" class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+@*here the popup model*@
+
+<script>
+    function NewEmployee() {
+        $.ajax({
+
+            url: '@Url.Action("Create", "Employee")',
+            datatype: "text",
+            type: "Get",
+            success: function (data) {
+                $('#EmployeeContent').html(data);
+                $('#form-modal').modal('show');
+            },
+        });
+    }
+</script>

@@ -43,6 +43,8 @@ namespace HrSystem.Repositories
 
         public void Update(int id, Employee employee)
         {
+           // var emp = Find(id);
+            
             dbContext.Update(employee);
             dbContext.SaveChanges();
         }

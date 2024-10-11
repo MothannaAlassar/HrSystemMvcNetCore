@@ -427,3 +427,4 @@ E:\SharedApps\GitHub\HrSystemMvcNetCore\obj\Debug\net5.0\HrSystem.genruntimeconf
 E:\SharedApps\GitHub\HrSystemMvcNetCore\obj\Debug\net5.0\HrSystem.csproj.AssemblyReference.cache
 E:\SharedApps\GitHub\HrSystemMvcNetCore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Login_ar.cshtml.g.cs
 E:\SharedApps\GitHub\HrSystemMvcNetCore\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial_ar.cshtml.g.cs
+E:\SharedApps\GitHub\HrSystemMvcNetCore\obj\Debug\net5.0\Razor\Views\Employee\en\Create - Copy.cshtml.g.cs

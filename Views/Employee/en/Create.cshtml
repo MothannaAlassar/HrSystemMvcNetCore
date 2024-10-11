@@ -1,36 +1,279 @@
 ﻿@model HrSystem.Models.EmployeeViewModel
 
-@{ ViewData["Title"] = "Create"; }
+@{ //Layout = null;
+                ViewData["Title"] = "Create"; }
 
-<h2>Employee</h2>
+@*<h2>Employee</h2>
 
-<h4>Create</h4>
+    <h4>Create</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                @if (ViewBag.Message != null)
+                {
+    <h5 class="alert alert-danger">@ViewBag.Message</h5>}
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="First_Name_En" class="control-label"></label>
+                    <input asp-for="First_Name_En" class="form-control" />
+                    <span asp-validation-for="First_Name_En" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="First_Name_Ar" class="control-label"></label>
+                    <input asp-for="First_Name_Ar" class="form-control" />
+                    <span asp-validation-for="First_Name_Ar" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-info" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+<div class="alert-success modal-title text-center">
+    <h2>Employees-Create New</h2>
+</div>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Create" enctype="multipart/form-data">
-            @if (ViewBag.Message != null)
-            {
-<h5 class="alert alert-danger">@ViewBag.Message</h5>}
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name_En" class="control-label"></label>
-                <input asp-for="Name_En" class="form-control" />
-                <span asp-validation-for="Name_En" class="text-danger"></span>
+            <input type="hidden" asp-for="Id" />
+            @*<input type="hidden" asp-for="Date" />*@
+            @*<div class="form-group">
+            <label asp-for="First_Name_En" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">#</div>
+                </div>
+                <input asp-for="First_Name_En" class="form-control" />
             </div>
-            <div class="form-group">
-                <label asp-for="Name_Ar" class="control-label"></label>
-                <input asp-for="Name_Ar" class="form-control" />
-                <span asp-validation-for="Name_Ar" class="text-danger"></span>
+            <span asp-validation-for="First_Name_En" class="text-danger"></span>
+        </div>*@
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="First_Name_En" class="control-label"></label>
+                        <input asp-for="First_Name_En" class="form-control" />
+                        <span asp-validation-for="First_Name_En" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Last_Name_En" class="control-label"></label>
+                        <input asp-for="Last_Name_En" class="form-control" />
+                        <span asp-validation-for="Last_Name_En" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="First_Name_Ar" class="control-label"></label>
+                        <input asp-for="First_Name_Ar" class="form-control" />
+                        <span asp-validation-for="First_Name_Ar" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Last_Name_Ar" class="control-label"></label>
+                        <input asp-for="Last_Name_Ar" class="form-control" />
+                        <span asp-validation-for="Last_Name_Ar" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Phone_Number" class="control-label"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                            </div>
+                            <input asp-for="Phone_Number" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Phone_Number" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Hire_Date" class="control-label"></label>
+                        <input asp-for="Hire_Date" class="form-control" />
+                        <span asp-validation-for="Hire_Date" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DepartmentId" class="control-label"></label>
+                        <select required asp-for="DepartmentId" class="form-control"
+                                asp-items="@(new SelectList(Model?.Departments??new List<HrSystem.Data.Department>(), "Id", "Name_En"))"></select>
+                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CityId" class="control-label"></label>
+                        <select required asp-for="CityId" class="form-control"
+                                asp-items="@(new SelectList(Model?.Cities??new List<HrSystem.Data.City>(), "Id", "CityName_En"))"></select>
+                        <span asp-validation-for="CityId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="BirthOfDate" class="control-label"></label>
+                        <input asp-for="BirthOfDate" class="form-control" />
+                        <span asp-validation-for="BirthOfDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="BirthPlace" class="control-label"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                            </div>
+                            <input asp-for="BirthPlace" class="form-control" />
+                        </div>
+                        <span asp-validation-for="BirthPlace" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="NationaltyId" class="control-label"></label>
+                        <select required asp-for="NationaltyId" class="form-control"
+                                asp-items="@(new SelectList(Model?.Countries??new List<HrSystem.Data.Country>(), "Id", "Nationality_En"))"></select>
+                        <span asp-validation-for="NationaltyId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="StayingCountryId" class="control-label"></label>
+                        <select required asp-for="StayingCountryId" class="form-control"
+                                asp-items="@(new SelectList(Model?.Countries??new List<HrSystem.Data.Country>(), "Id", "CountryName_En"))"></select>
+                        <span asp-validation-for="StayingCountryId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="IdentityType" class="control-label"></label>
+                        <select required asp-for="IdentityType" class="form-control"
+                                asp-items="@(new SelectList(Model?.IdentityTypes??new List<HrSystem.Models.IdentityType>(), "Id", "Name_En"))"></select>
+                        <span asp-validation-for="IdentityType" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="IdentityNumber" class="control-label"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                            </div>
+                            <input asp-for="IdentityNumber" class="form-control" />
+                        </div>
+                        <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="IdentityIssuDate" class="control-label"></label>
+                        <input asp-for="IdentityIssuDate" class="form-control" />
+                        <span asp-validation-for="IdentityIssuDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="IdentityExpiredDate" class="control-label"></label>
+                        <input asp-for="IdentityExpiredDate" class="form-control" />
+                        <span asp-validation-for="IdentityExpiredDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="IdentityIssuPlace" class="control-label"></label>
+                        <input asp-for="IdentityIssuPlace" class="form-control" />
+                        <span asp-validation-for="IdentityIssuPlace" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="BloodType" class="control-label"></label>
+                        <select required asp-for="BloodType" class="form-control"
+                                asp-items="@(new SelectList(Model?.BloodTypes??new List<HrSystem.Models.BloodType>(), "Id", "Name"))"></select>
+                        <span asp-validation-for="BloodType" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label asp-for="File" class="control-label"></label>
+                <input id="fileupload" type="file" name="File" asp-for="File" onchange="IsValidImage();" class="form-control" />
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+           
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-info" />
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+<script>
+    function IsValidImage() {
+        var fileInput = document.getElementById('fileupload');
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.bmp|\.gif)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please upload file having extensions .jpeg/.jpg/.png/.gif/.bmp only.');
+            fileInput.value = '';
+            return false;
+        }
+    }
+</script>
