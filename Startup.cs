@@ -71,7 +71,7 @@ namespace HrSystem
             });
             app.UseRouting();
             // Register the global exception handler middleware
-            app.UseMiddleware<Middlewares.GlobalExceptionHandlerMiddleware>();
+            //app.UseMiddleware<Middlewares.GlobalExceptionHandlerMiddleware>();
 
             app.UseAuthentication();
             app.UseAuthorization();

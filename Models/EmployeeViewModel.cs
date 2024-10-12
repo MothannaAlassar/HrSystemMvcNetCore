@@ -39,6 +39,7 @@ namespace HrSystem.Models
         public string BloodType { get; set; }
         public string Address { get; set; }
         public int? CityId { get; set; }
+        public IFormFile AttachFile { get; set; }
         public string AttachmentFile { get; set; }
         public DateTime? AddedDate { get; set; }
         public Guid? AddedUser { get; set; }
@@ -49,9 +50,9 @@ namespace HrSystem.Models
         public Guid? DeletedUser { get; set; }
         public int? DepartmentId { get; set; }
         public Department Department { get; set; }
-        public Country Nationality { get; set; }
-        public Country Country { get; set; }
-        public City City { get; set; }
+        public Country Nationality { get { return this.Countries?.Where(a => a.Id == this.NationaltyId)?.FirstOrDefault(); } }
+        public Country Country { get { return this.Countries?.Where(a => a.Id == this.StayingCountryId)?.FirstOrDefault(); } }
+        public City City { get { return this.Cities?.Where(a => a.Id == this.CityId)?.FirstOrDefault(); } }
         public List<Data.Employee> Employees { get; set; }
         public List<Data.Department> Departments { get; set; }
         public List<Data.Country> Countries { get; set; }
@@ -59,10 +60,10 @@ namespace HrSystem.Models
         public List<Data.City> Cities { get; set; }
         public List<IdentityType> IdentityTypes { get; set; } = new List<IdentityType>
         {
-            new IdentityType{Id="1",Name_Ar="Card1",Name_En="Card1"},
-            new IdentityType{Id="2",Name_Ar="Card2",Name_En="Card2"},
-            new IdentityType{Id="3",Name_Ar="Card3",Name_En="Card3"},
-            new IdentityType{Id="4",Name_Ar="Card4",Name_En="Card4"},
+            new IdentityType{Id="1",Name_Ar="هوية شحصية",Name_En="Idenity"},
+            new IdentityType{Id="2",Name_Ar="جواز سفر",Name_En="Passport"},
+            new IdentityType{Id="3",Name_Ar="بطاقة عائلية",Name_En="Family card"},
+            new IdentityType{Id="4",Name_Ar="اقامة",Name_En="Residence ID"},
         };
         public List<BloodType> BloodTypes { get; set; } = new List<BloodType>
         {
@@ -71,6 +72,7 @@ namespace HrSystem.Models
             new BloodType{Id="B",Name="B"},
             new BloodType{Id="AB",Name="AB"},
         };
+        public IdentityType IdentityTypeObject { get => this.IdentityTypes?.Where(a => a.Id == this.IdentityType)?.FirstOrDefault(); }
     }
     public class BloodType
     {

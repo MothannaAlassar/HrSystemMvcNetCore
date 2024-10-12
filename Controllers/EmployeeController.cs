@@ -50,9 +50,9 @@ namespace HrSystem.Controllers
                 BirthOfDate=employee.BirthOfDate,
                 BirthPlace=employee.BirthPlace,
                 BloodType=employee.BloodType,
-                City=employee.City,
+               // City=employee.City,
                 CityId=employee.CityId,
-                Country=employee.Country,
+                //Country=employee.Country,
                 DeletedDate=employee.DeletedDate,
                 DeletedUser=employee.DeletedUser,
                 Department=employee.Department,
@@ -74,7 +74,7 @@ namespace HrSystem.Controllers
                 IsDeleted=employee.IsDeleted,
                 Last_Name_Ar=employee.Last_Name_Ar,
                 Last_Name_En=employee.Last_Name_En,
-                Nationality=employee.Nationality,
+               // Nationality=employee.Nationality,
                 NationaltyId=employee.NationaltyId,
                 Phone_Number=employee.Phone_Number,
                 StayingCountryId=employee.StayingCountryId
@@ -132,6 +132,7 @@ namespace HrSystem.Controllers
             return RedirectToView($"Details", model);
         }
         // GET: Employee/Create
+        [Authorize]
         public ActionResult Create()
         {
             var model = new Models.EmployeeViewModel
@@ -148,6 +149,7 @@ namespace HrSystem.Controllers
         // POST: Employee/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create(Models.EmployeeViewModel model)
         {
 
@@ -159,6 +161,7 @@ namespace HrSystem.Controllers
                     employee.AddedDate = DateTime.Now;
                     employee.AddedUser = Guid.Parse(_userManager.GetUserId(User));
                     employee.Img_Name = SaveImage(model.File).Result;
+                    employee.AttachmentFile = SaveFiles(model.AttachFile).Result;
                     employeeRepo.Add(employee);
 
                     return RedirectToAction(nameof(Index));
@@ -177,7 +180,7 @@ namespace HrSystem.Controllers
         }
        async Task<string> SaveImage(IFormFile imageFile)
         {
-            var mediaFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "MediaFiles");
+            var mediaFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "MediaFiles","Employees","Images");
             if (!Directory.Exists(mediaFilesPath))
             {
                 Directory.CreateDirectory(mediaFilesPath);
@@ -195,7 +198,27 @@ namespace HrSystem.Controllers
             }
             return uniqueFileName;
         }
-       async Task<string> UploadImage(IFormFile file)
+        async Task<string> SaveFiles(IFormFile file)
+        {
+            var mediaFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "MediaFiles", "Employees", "Docs");
+            if (!Directory.Exists(mediaFilesPath))
+            {
+                Directory.CreateDirectory(mediaFilesPath);
+            }
+
+            // Generate a unique file name
+            var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            //var fileName = Path.GetFileName(imageFile.FileName);
+            var filePath = Path.Combine(mediaFilesPath, uniqueFileName);
+
+            // Save the file
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+            return uniqueFileName;
+        }
+        async Task<string> UploadImage(IFormFile file)
         {
             if (file != null && file.Length > 0)
             {
@@ -275,6 +298,34 @@ namespace HrSystem.Controllers
             {
                 return RedirectToAction($"Delete", model);
             }
+        }
+
+        // Action to display PDF
+        public IActionResult ViewPdf(string fileName)
+        {
+            //string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "pdfs", fileName);
+            var mediaFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "MediaFiles", "Employees", "Docs", fileName);
+            
+            if (!System.IO.File.Exists(mediaFilesPath))
+            {
+                return NotFound();
+            }
+
+            return File(mediaFilesPath, "application/pdf");
+        }
+
+        // Action to download PDF
+        public IActionResult DownloadPdf(string fileName)
+        {
+           // string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "pdfs", fileName);
+            var mediaFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "MediaFiles", "Employees", "Docs", fileName);
+
+            if (!System.IO.File.Exists(mediaFilesPath))
+            {
+                return NotFound();
+            }
+
+            return File(mediaFilesPath, "application/pdf", fileName);
         }
 
     }

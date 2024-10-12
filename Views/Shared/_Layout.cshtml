@@ -39,6 +39,26 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+            @*here the popup model*@
+            <div id="Loading-busy" class="modal fade" tabindex="-1" aria-hidden="true" role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            @*<h5 class="modal-title">Add New Employee</h5>*@
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="spinner-grow" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*here the popup model*@
+
         </main>
     </div>
 
@@ -58,8 +78,15 @@
             }
 
         }
+        function ShowLoadingBusy() {
+            $('#Loading-busy').modal('show');
+        }
+        function HideLoadingBusy() {
+            $('#Loading-busy').modal('hide');
+        }
     </script>
     <script>
+
         // jQuery
         function ChangeLang() {
             // Get the current URL

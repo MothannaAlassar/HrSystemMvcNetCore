@@ -3,282 +3,131 @@
 @{ //Layout = null;
     ViewData["Title"] = "Details"; }
 
-@*<h2>Employee</h2>
-
-    <h4>Create</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create" enctype="multipart/form-data">
-                @if (ViewBag.Message != null)
-                {
-    <h5 class="alert alert-danger">@ViewBag.Message</h5>}
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="First_Name_En" class="control-label"></label>
-                    <input asp-for="First_Name_En" class="form-control" />
-                    <span asp-validation-for="First_Name_En" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="First_Name_Ar" class="control-label"></label>
-                    <input asp-for="First_Name_Ar" class="form-control" />
-                    <span asp-validation-for="First_Name_Ar" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-info" />
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>*@
-<div class="alert-success modal-title text-center">
+<div class="list-group-item-info modal-title text-center">
     <h2>Employees-Details</h2>
 </div>
 <hr />
-<div class="row">
+<div class="form-row">
     <div class="col-md-12">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            @*<input type="hidden" asp-for="Date" />*@
-            @*<div class="form-group">
-            <label asp-for="First_Name_En" class="control-label"></label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">#</div>
-                </div>
-                <input asp-for="First_Name_En" class="form-control" />
+        <div class="row">
+            <div class="col-md-2" style="margin:15px;">
+                <img src="/MediaFiles/Employees/Images/@Model.Img_Name" alt="@Model.First_Name_En" style="width:100px;height:auto;" />
+
             </div>
-            <span asp-validation-for="First_Name_En" class="text-danger"></span>
-        </div>*@
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="First_Name_En" class="control-label"></label>
-                        <input readonly asp-for="First_Name_En" class="form-control" />
-                        <span asp-validation-for="First_Name_En" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Last_Name_En" class="control-label"></label>
-                        <input readonly asp-for="Last_Name_En" class="form-control" />
-                        <span asp-validation-for="Last_Name_En" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="First_Name_Ar" class="control-label"></label>
-                        <input readonly asp-for="First_Name_Ar" class="form-control" />
-                        <span asp-validation-for="First_Name_Ar" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Last_Name_Ar" class="control-label"></label>
-                        <input readonly asp-for="Last_Name_Ar" class="form-control" />
-                        <span asp-validation-for="Last_Name_Ar" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Email" class="control-label"></label>
-                        <input readonly asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+            @if(Model.AttachmentFile!=null&&!string.IsNullOrEmpty(Model.AttachmentFile))
+            {
+            <div class="col-md-2">
+                <div class="card" style="margin: 15px; width: 150px; height: auto;">
+                    <img src="~/imgs/pdf.svg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5>View PDF</h5>
+                        <a href="@Url.Action("ViewPdf", "Employee", new { fileName = Model.AttachmentFile })" target="_blank">
+                            View PDF
+                        </a>
+                        @*<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>*@
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Phone_Number" class="control-label"></label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </div>
-                            </div>
-                            <input readonly asp-for="Phone_Number" class="form-control" />
-                        </div>
-                        <span asp-validation-for="Phone_Number" class="text-danger"></span>
-                    </div>
-                </div>
+            </div>
+            }
+            <div class="col">
+                <span class="badge badge-info">First Name English:</span>
+                @Html.DisplayFor(m => m.First_Name_En)<br />
+                <span class="badge badge-info">Last Name English:</span>
+                @Html.DisplayFor(m => m.Last_Name_En) <br />
+                <span class="badge badge-info">First Name Arabic:</span>
+                @Html.DisplayFor(m => m.First_Name_Ar)<br />
+                <span class="badge badge-info">Last Name Arabic:</span>
+                @Html.DisplayFor(m => m.Last_Name_Ar) <br />
+                <span class="badge badge-info">Phone Number:</span>
+                @Html.DisplayFor(m => m.Phone_Number) <br />
+                <span class="badge badge-info">Email:</span>
+                @Html.DisplayFor(m => m.Email) <br />
+                <span class="badge badge-info">Added Date :</span>
+                @if(Model.AddedDate!=null){
+                @Model.AddedDate.Value.ToString("yyyy-MM-dd")
+                }<br />
+                <!--<div class="container">
+    <div class="row">
+        <div class="col-4">First Name English:</div>
+        <div class="col">@Html.DisplayFor(m => m.First_Name_En)</div>-->
+                <!-- Force next columns to break to new line at md breakpoint and up -->
+                <!--<div class="w-100 d-none d-md-block"></div>
+
+        <div class="col-4">Last Name English:</div>
+        <div class="col">@Html.DisplayFor(m => m.Last_Name_En)</div>
+    </div>
+    <div class="row">
+        <div class="col-4">First Name Arabic:</div>
+        <div class="col">@Html.DisplayFor(m => m.First_Name_Ar)</div>-->
+                <!-- Force next columns to break to new line at md breakpoint and up -->
+                <!--<div class="w-100 d-none d-md-block"></div>
+
+            <div class="col-4">Last Name Arabic:</div>
+            <div class="col">@Html.DisplayFor(m => m.Last_Name_Ar)</div>
+        </div>
+    </div>-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span class="badge badge-info">Date Of Hire:</span>
+                @if(Model.Hire_Date!=null){
+                @Model.Hire_Date.Value.ToString("yyyy-MM-dd")
+                }<br />
+                <span class="badge badge-info h4">Department Name:</span>
+                @Html.DisplayFor(m => m.Department.Name_En) <br />
+
+                <span class="badge badge-info h4">Birth Place:</span>
+                @Html.DisplayFor(m => m.BirthPlace) <br />
+                <span class="badge badge-info h4">Birth Of Date:</span>
+                @if(Model.BirthOfDate!=null){
+                @Model.BirthOfDate.Value.ToString("yyyy-MM-dd")
+                }<br />
+                <span class="badge badge-info h4">Identity Type :</span>
+                @Html.DisplayFor(m => m.IdentityTypeObject.Name_En) <br />
+
+                <span class="badge badge-info h4">Identity Issu Date:</span>
+                @if(Model.IdentityIssuDate!=null){
+                @Model.IdentityIssuDate.Value.ToString("yyyy-MM-dd")
+                } <br />
+
+                <span class="badge badge-info h4">Identity Issu Place:</span>
+                @Html.DisplayFor(m => m.IdentityIssuPlace) <br />
+            </div>
+            <div class="col">
+                <span class="badge badge-info">Address:</span>
+                @Html.DisplayFor(m => m.Address) <br />
+                <span class="badge badge-info h4">City Name:</span>
+                @Html.DisplayFor(m => m.City.CityName_En) <br />
+
+                <span class="badge badge-info h4">Nationality :</span>
+                @Html.DisplayFor(m => m.Nationality.Nationality_En) <br />
+                <span class="badge badge-info h3">Country of Residence:</span>
+                @Html.DisplayFor(m => m.Country.CountryName_En) <br />
+                <span class="badge badge-info h3">Identity Number:</span>
+                @Html.DisplayFor(m => m.IdentityNumber) <br />
+                <span class="badge badge-info h3">Identity Expired Date:</span>
+                @if(Model.IdentityExpiredDate!=null){
+                   @Model.IdentityExpiredDate.Value.ToString("yyyy-MM-dd")
+                }
+                <br />
+                <span class="badge badge-info h3">Blood Type:</span>
+                @Html.DisplayFor(m => m.BloodType) <br />
+            </div>
+        </div>
+        <hr />
+        
+        <div class="row">
+            <div class="col">
+             <a href="/employee/edit/@Model.Id" class="btn btn-primary btn-block">Edit</a>
             </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Hire_Date" class="control-label"></label>
-                        <input readonly asp-for="Hire_Date" class="form-control" />
-                        <span asp-validation-for="Hire_Date" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="DepartmentId" class="control-label"></label>
-                        <select disabled required asp-for="DepartmentId" class="form-control"
-                                asp-items="@(new SelectList(Model?.Departments??new List<HrSystem.Data.Department>(), "Id", "Name_En"))"></select>
-                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
-                    </div>
-                </div>
+            <div class="col">
+                <a asp-action="Index" class="btn btn-outline-info btn-block">Back to List</a>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Address" class="control-label"></label>
-                        <input readonly asp-for="Address" class="form-control" />
-                        <span asp-validation-for="Address" class="text-danger"></span>
-                    </div>
-                </div>
+        </div>
 
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="CityId" class="control-label"></label>
-                        <select disabled required asp-for="CityId" class="form-control"
-                                asp-items="@(new SelectList(Model?.Cities??new List<HrSystem.Data.City>(), "Id", "CityName_En"))"></select>
-                        <span asp-validation-for="CityId" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="BirthOfDate" class="control-label"></label>
-                        <input readonly asp-for="BirthOfDate" class="form-control" />
-                        <span asp-validation-for="BirthOfDate" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="BirthPlace" class="control-label"></label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </div>
-                            </div>
-                            <input readonly asp-for="BirthPlace" class="form-control" />
-                        </div>
-                        <span asp-validation-for="BirthPlace" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="NationaltyId" class="control-label"></label>
-                        <select disabled required asp-for="NationaltyId" class="form-control"
-                                asp-items="@(new SelectList(Model?.Countries??new List<HrSystem.Data.Country>(), "Id", "Nationality_En"))"></select>
-                        <span asp-validation-for="NationaltyId" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="StayingCountryId" class="control-label"></label>
-                        <select disabled required asp-for="StayingCountryId" class="form-control"
-                                asp-items="@(new SelectList(Model?.Countries??new List<HrSystem.Data.Country>(), "Id", "CountryName_En"))"></select>
-                        <span asp-validation-for="StayingCountryId" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="IdentityType" class="control-label"></label>
-                        <select disabled required asp-for="IdentityType" class="form-control"
-                                asp-items="@(new SelectList(Model?.IdentityTypes??new List<HrSystem.Models.IdentityType>(), "Id", "Name_En"))"></select>
-                        <span asp-validation-for="IdentityType" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="IdentityNumber" class="control-label"></label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </div>
-                            </div>
-                            <input readonly asp-for="IdentityNumber" class="form-control" />
-                        </div>
-                        <span asp-validation-for="IdentityNumber" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="IdentityIssuDate" class="control-label"></label>
-                        <input readonly asp-for="IdentityIssuDate" class="form-control" />
-                        <span asp-validation-for="IdentityIssuDate" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="IdentityExpiredDate" class="control-label"></label>
-                        <input readonly asp-for="IdentityExpiredDate" class="form-control" />
-                        <span asp-validation-for="IdentityExpiredDate" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="IdentityIssuPlace" class="control-label"></label>
-                        <input readonly asp-for="IdentityIssuPlace" class="form-control" />
-                        <span asp-validation-for="IdentityIssuPlace" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="BloodType" class="control-label"></label>
-                        <select disabled required asp-for="BloodType" class="form-control"
-                                asp-items="@(new SelectList(Model?.BloodTypes??new List<HrSystem.Models.BloodType>(), "Id", "Name"))"></select>
-                        <span asp-validation-for="BloodType" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-           <div class="row">
-               <div class="col-md-6">
-                   <div>
-                       <img src="/MediaFiles/@Model.Img_Name" alt="@Model.First_Name_En" style="width:100px;height:auto;" />
-                       @*<img src="@Url.Content("~/MediaFiles/" + Model.Img_Name)" alt="@Model.First_Name_En" style="width:100px;height:auto;" />*@
-                       @*<label asp-for="File" class="control-label"></label>*@
-                       @*<input disabled id="fileupload" type="file" name="File" asp-for="File" onchange="IsValidImage();" class="form-control" />
-            <span asp-validation-for="File" class="text-danger"></span>*@
-                   </div>
-               </div>
-               @*<div class="col-md-6">
-                   @Html.DisplayFor(a => a.First_Name_En)
-                   @Html.DisplayFor(a => a.Last_Name_En)
-               </div>*@
-           </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <a href="/employee/edit/@Model.Id" class="btn btn-primary">Edit</a>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <a asp-action="Index" class="btn btn-primary">Back to List</a>
-                    </div>
-                </div>
-            </div>
-        </form>
     </div>
 </div>
 
